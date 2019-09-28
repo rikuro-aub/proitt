@@ -10,9 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_09_16_031327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag", null: false
+    t.boolean "active_flag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "videos", force: :cascade do |t|
+    t.string "video_id", null: false
+    t.bigint "tag_id"
+    t.text "description"
+    t.text "thumbnail_url", null: false
+    t.bigint "view_count"
+    t.integer "like_count"
+    t.integer "dislike_count"
+    t.integer "favorite_count"
+    t.boolean "active_flag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_videos_on_tag_id"
+  end
 
 end
