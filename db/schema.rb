@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_16_031327) do
+ActiveRecord::Schema.define(version: 2019_10_05_015949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_09_16_031327) do
     t.string "video_id", null: false
     t.bigint "tag_id"
     t.text "description"
-    t.text "thumbnail_url", null: false
+    t.text "thumbnail_url"
     t.bigint "view_count"
     t.integer "like_count"
     t.integer "dislike_count"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2019_09_16_031327) do
     t.boolean "active_flag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "title"
     t.index ["tag_id"], name: "index_videos_on_tag_id"
   end
 
