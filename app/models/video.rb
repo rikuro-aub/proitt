@@ -18,4 +18,5 @@
 #
 
 class Video < ApplicationRecord
+    belongs_to :tag
 end
