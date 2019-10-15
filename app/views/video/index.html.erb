@@ -1,0 +1,15 @@
+<div data-scope-path="videos/index">
+    <div class="container">
+        <% @tags.each do |tag| %>
+            <div class="row">
+                <p><%= tag.tag %></p>
+                <% @videos[tag.tag.to_sym].each do |video|%>
+                    <div class="video">
+                        <%= link_to image_tag(video.thumbnail_url), "#" %>
+                        <p><%= video.title %></p>
+                    </div>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+</div>
