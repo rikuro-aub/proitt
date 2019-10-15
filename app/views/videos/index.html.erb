@@ -5,7 +5,7 @@
                 <p><%= tag.tag %></p>
                 <% @videos[tag.tag.to_sym].each do |video|%>
                     <div class="video">
-                        <%= link_to image_tag(video.thumbnail_url), "#" %>
+                        <%= link_to image_tag(video.thumbnail_url), video_path(video) %>
                         <p><%= video.title %></p>
                     </div>
                 <% end %>

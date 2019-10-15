@@ -1,4 +1,4 @@
-class VideoController < ApplicationController
+class VideosController < ApplicationController
   def index
     display_items_by_tag = 4
     @videos = {}
@@ -9,5 +9,8 @@ class VideoController < ApplicationController
       # いいね数/視聴回数 が上位の動画をトップページに表示する
       @videos.merge!(tag.tag.to_sym => Video.where(tag_id: tag).order('like_count/view_count DESC').limit(display_items_by_tag))
     end
+  end
+
+  def show
   end
 end
