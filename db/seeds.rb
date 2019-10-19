@@ -137,8 +137,14 @@ page = 1
 # タグの一覧を取得して、タグをキーワードに動画検索
 # ToDo: レコード数の制限から取得レコード数をidで制限している
 # ToDo: youtuvbe api の使用制限から取得範囲をどうするか考慮する必要あり
-Tag.where("id<=2 AND active_flag=true").find_each do |tag|
-    next_page_token, total_page, result_search = SearchVideosList(tag.tag, PER_PAGE_VIDEOS_SEARCH, order, type, Category::EDUCATION, next_page_token)
+Tag.where("id between 22 AND 22 AND active_flag=true").find_each do |tag|
+    # ToDo: 日本語動画を優先して取得するために、queryの後ろに日本語を結合しているが取得方法は検討する必要あり
+    query = tag.tag
+    # query = tag.tag + ' プログラ'
+    next_page_token, total_page, result_search = SearchVideosList(query, PER_PAGE_VIDEOS_SEARCH, order, type, Category::EDUCATION, next_page_token)
+    puts "検索ワード:'#{query}' 検索結果:#{result_search.page_info.total_results}"
+    puts result_search.items
+
     while page <= total_page do
         result_search.items.each do |item|
             id = item.id
@@ -146,20 +152,24 @@ Tag.where("id<=2 AND active_flag=true").find_each do |tag|
             Video.where(video_id: id.video_id).first_or_create do |t|
                 t.tag_id = tag.id
                 t.active_flag = true
+                puts "id:#{tag.id}登録できた"
             end
         end
 
         page += 1
-        break if PER_PAGE_VIDEOS_SEARCH * page < MAX_SEARCH_VIDEOS_COUNT
-        next_page_token, total_page, result_search = SearchVideosList(tag, PER_PAGE_VIDEOS_SEARCH, order, type, Category::EDUCATION, next_page_token)
+        break if PER_PAGE_VIDEOS_SEARCH * page > MAX_SEARCH_VIDEOS_COUNT
+        next_page_token, total_page, result_search = SearchVideosList(query, PER_PAGE_VIDEOS_SEARCH, order, type, Category::EDUCATION, next_page_token)
     end
 end
 
 # video_idから動画の詳細を取得して登録する
 # ToDo: youtuvbe api の使用制限から取得範囲をどうするか考慮する必要あり
-Video.where('tag_id<=2 AND title is null').find_each do |video|
+Video.where('tag_id<=22 AND title is null').find_each do |video|
     status, result_search = GetVideosDetail(video.video_id)
-    next unless status == 200
+    unless status == 200 then
+        puts "status:#{status} id:#{video.id}\n#{result_search}"
+        next
+    end
 
     snippet = result_search['items'][0]['snippet']
     statistics = result_search['items'][0]['statistics']
@@ -173,4 +183,6 @@ Video.where('tag_id<=2 AND title is null').find_each do |video|
     video.dislike_count = statistics['dislikeCount'].to_i
     video.favorite_count = statistics['favoriteCount'].to_i
     video.save
+
+    puts "status:#{status} id:#{video.id} tag:#{video.tag.tag}"
 end
