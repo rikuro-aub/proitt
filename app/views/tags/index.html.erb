@@ -1,0 +1,14 @@
+<div data-scope-path="tags/index">
+    <div class="container">
+        <span class="label label-primary"><%= @tag.tag %></span>
+        <div class="row">
+            <% @videos.each do |video| %>
+                <div class="video">
+                    <%= link_to image_tag(video.thumbnail_url), video_path(video) %>
+                    <p><%= video.title %></p>
+                </div>
+            <% end %>
+        </div>
+        <%= paginate @videos %>
+    </div>
+</div>
