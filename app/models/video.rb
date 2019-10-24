@@ -19,4 +19,8 @@
 
 class Video < ApplicationRecord
     belongs_to :tag
+    has_many :commnet
+    has_many :favorite
+    has_many :video, through: :comment
+    has_many :video, through: :favorite
 end
