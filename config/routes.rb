@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   root to: 'videos#index'
   resources :videos, only: [:index, :show]
   resources :tags, only: [:index]
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
 end

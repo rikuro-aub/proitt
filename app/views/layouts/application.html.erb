@@ -23,7 +23,13 @@
         <div class="collapse navbar-collapse" id="bs-navi">
           <ul class="nav navbar-nav">
             <li><%= link_to 'ホーム', root_path %></li>
-            <li><a href="#">ログイン</a></li>
+            <li>
+              <% if current_user then %>
+                <%= link_to 'ログアウト', logout_path %>
+              <% else %>
+                <%= link_to 'ログイン', '/auth/github' %>
+              <% end %>
+            </li>
             <li><a href="#">nav1</a></li>
             <li><a href="#">nav2</a></li>
             <li><a href="#">nav3</a></li>
