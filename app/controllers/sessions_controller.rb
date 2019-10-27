@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+    skip_before_action :login_rquired
+
     def create
         auth = request.env['omniauth.auth']
         token_digest = Digest::SHA256.hexdigest auth['credentials']['token']

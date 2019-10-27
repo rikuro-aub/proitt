@@ -1,4 +1,6 @@
 class VideosController < ApplicationController
+  skip_before_action :login_rquired
+
   def index
     display_items_by_tag = 4
     @videos = {}
