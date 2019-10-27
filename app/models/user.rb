@@ -21,6 +21,7 @@ class User < ApplicationRecord
         create! do |user|
           user.user_id = auth['uid']
           user.name = auth['info']['nickname']
+          user.image_url = auth['extra']['raw_info']['avatar_url']
           user.token_digest = Digest::SHA256.hexdigest auth['credentials']['token']
         end
     end

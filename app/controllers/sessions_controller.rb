@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
         if user = User.find_by(user_id: auth['uid']) then
             # 取得したGitHubのユーザー情報が更新されている可能性がある場合はここで同期する
             user.update(name: auth['info']['nickname']) if user.name != auth['info']['nickname']
+            user.update(image_url: auth['extra']['raw_info']['avatar_url']) if user.image_url != auth['extra']['raw_info']['avatar_url']
         else
             user = User.create_with_omniauth(auth)
         end
