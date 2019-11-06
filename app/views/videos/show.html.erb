@@ -3,5 +3,11 @@
         <p><%= @video.title %></p>
         <%= content_tag(:iframe, '', :src => "https://www.youtube.com/embed/#{@video.video_id}?autoplay=0&controls=1") %>
         <p><%= @video.description %></p>
+        <%= link_to 'コメントを投稿する' ,new_video_comment_path(@video.id), class: 'btn btn-primary' %>
+        <div class="comment">
+            <div class="comment__title">コメント</div>
+            <%= 'コメントはまだ投稿されていません' if @video.comments.blank? %>
+            <%= render @video.comments %>
+        </div>
     </div>
 </div>

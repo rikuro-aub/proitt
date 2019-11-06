@@ -1,0 +1,5 @@
+<div class="comment__body">
+    <div class="comment__user-image"><%= content_tag(:img, '', src: comment.user.image_url, alt: 'プロフィール画像') %></div>
+    <div class="comment__user-name"><%= comment.user.name %></div>
+    <div class="comment__content"><%= simple_format(h comment.comment) %></div>
+</div>

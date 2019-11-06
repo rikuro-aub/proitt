@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
         end
 
         def login_rquired
-            redirect_to '/auth/github' unless current_user
+            unless current_user then
+                flash[:error] = 'ログインしてください'
+                redirect_to root_path
+            end
         end
 end

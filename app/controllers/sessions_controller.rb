@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
 
         user.update(token_digest: token_digest)
         session[:user_id] = user.id
+        session[:token] = auth['credentials']['token']
 
         redirect_to root_path, notice: 'ログインしました'
     end

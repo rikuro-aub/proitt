@@ -6,3 +6,7 @@ ja:
       previous: '前'
       next: '次'
       truncate: '...'
+  activerecord:
+    attributes:
+      comment:
+        comment: 'コメント'

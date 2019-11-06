@@ -37,6 +37,19 @@
         </div>
       </div>
     </nav>
+    <% if flash[:notice].present? %>
+      <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:error].present? %>
+      <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+    <% end %>
+    <% if flash[:validates].present? %>
+      <ul class="alert alert-danger" role="alert">
+        <% flash[:validates].each do |message| %>
+            <%= content_tag(:li, message) %>
+        <% end %>
+      </ul>
+    <% end %>
     <%= yield %>
   </body>
 </html>
