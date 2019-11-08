@@ -8,6 +8,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  token_digest :string           not null
+#  user_id      :string           not null
 #
 
 class User < ApplicationRecord
@@ -21,10 +22,12 @@ class User < ApplicationRecord
           user.name = auth['info']['nickname']
           user.image_url = auth['extra']['raw_info']['avatar_url']
           user.token_digest = Digest::SHA256.hexdigest auth['credentials']['token']
+          user.user_id = auth['uid']
         end
     end
 
     def equal_token?(token)
+        return false if token.nil?
         self.token_digest == (Digest::SHA256.hexdigest token) ? true : false
     end
 end

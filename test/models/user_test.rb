@@ -8,6 +8,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  token_digest :string           not null
+#  user_id      :string           not null
 #
 
 require 'test_helper'
