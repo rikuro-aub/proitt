@@ -58,6 +58,20 @@ class CommentsController < ApplicationController
         end
     end
 
+    def destroy
+        @video = Video.find(params[:video_id])
+
+        # 正当なユーザーであることを確認
+        unless User.find(session[:user_id]).equal_token?(session[:token])
+            flash[:error] = 'コメントの削除に失敗しました / 再ログイン後に再実行してください'
+            redirect_to video_path(@video) and return
+        end
+
+        comment = Comment.find(params[:id])
+        comment.destroy
+        redirect_to video_path(@video), notice: 'コメントが削除されました'
+    end
+
     private
         def comment_params
             params.require(:comment).permit(:comment, :user_id, :video_id)

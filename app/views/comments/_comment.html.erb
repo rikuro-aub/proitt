@@ -5,7 +5,7 @@
     </div>
     <% if comment.user&.equal_token?(session[:token]) %>
         <div class="col-xs-1 comment__btn-edit"><%= link_to '編集', edit_video_comment_path(@video, comment) %></div>
-        <div class="col-xs-1 comment__btn-delete">削除</div>
+        <div class="col-xs-1 comment__btn-delete"><%= link_to '削除', video_comment_path(@video, comment), method: :delete, data: {confirm: '本当に削除してもよろしいですか?'} %></div>
     <% end %>
     <div class="col-xs-12 comment__content"><%= simple_format(h comment.comment) %></div>
 </div>
