@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
     def new
+        # createのvalidatesでチェックにかかる場合はflashでcommentが返される
         @user = User.find(session[:user_id])
         @video = Video.find(params[:video_id])
         @comment = Comment.new(flash[:comment])
@@ -11,7 +12,7 @@ class CommentsController < ApplicationController
         # 正当なユーザーであることを確認
         unless User.find(session[:user_id]).equal_token?(session[:token])
             flash[:error] = 'コメントの投稿に失敗しました / 再ログイン後に再投稿してください'
-            redirect_to new_video_comment_path(@video)
+            redirect_to new_video_comment_path(@video) and return
         end
 
         # コメントの登録
@@ -23,7 +24,36 @@ class CommentsController < ApplicationController
         else
             redirect_to new_video_comment_path(@video), flash: {
                 validates: comment.errors.full_messages,
-                commnet: comment,
+                comment: comment,
+            }
+        end
+    end
+
+    def edit
+        # updateのvalidatesでチェックにかかる場合はflashでcommentが返される
+        @user = User.find(session[:user_id])
+        @video = Video.find(params[:video_id])
+        @comment = flash[:comment].blank? ? Comment.find(params[:id]) : Comment.new(flash[:comment])
+    end
+
+    def update
+        @video = Video.find(params[:video_id])
+
+        # 正当なユーザーであることを確認
+        unless User.find(session[:user_id]).equal_token?(session[:token])
+            flash[:error] = 'コメントの投稿に失敗しました / 再ログイン後に再投稿してください'
+            redirect_to edit_video_comment_path(@video) and return
+        end
+
+        # コメントの更新
+        comment = Comment.find(params[:id])
+        if comment.update(comment_params)
+            flash[:notice] = 'コメントを更新しました'
+            redirect_to video_path(@video)
+        else
+            redirect_to edit_video_comment_path(@video), flash: {
+                validates: comment.errors.full_messages,
+                comment: comment,
             }
         end
     end

@@ -1,5 +1,11 @@
-<div class="comment__body">
-    <div class="comment__user-image"><%= content_tag(:img, '', src: comment.user.image_url, alt: 'プロフィール画像') %></div>
-    <div class="comment__user-name"><%= comment.user.name %></div>
-    <div class="comment__content"><%= simple_format(h comment.comment) %></div>
+<div class="row comment__body">
+    <div class="col-xs-10 comment__user">
+        <div class="comment__user-image"><%= content_tag(:img, '', src: comment.user.image_url, alt: 'プロフィール画像') %></div>
+        <div class="comment__user-name"><%= comment.user.name %></div>
+    </div>
+    <% if comment.user&.equal_token?(session[:token]) %>
+        <div class="col-xs-1 comment__btn-edit"><%= link_to '編集', edit_video_comment_path(@video, comment) %></div>
+        <div class="col-xs-1 comment__btn-delete">削除</div>
+    <% end %>
+    <div class="col-xs-12 comment__content"><%= simple_format(h comment.comment) %></div>
 </div>

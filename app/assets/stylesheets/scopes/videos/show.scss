@@ -1,4 +1,6 @@
 [data-scope-path="videos/show"] {
+    $comment-head-height: 36px;
+
     .container {
         .comment{
             .comment__title {
@@ -9,17 +11,33 @@
             .comment__body {
                 margin: 20px 0;
 
-                .comment__user-image {
-                    display: inline-block;
+                .comment__user {
+                    padding: 0 0;
+                    height: $comment-head-height;
 
-                    img {
-                        width: 36px;
-                        height: 36px;
+                    .comment__user-image {
+                        display: inline-block;
+
+                        img {
+                            width: 36px;
+                            height: $comment-head-height;
+                        }
+                    }
+
+                    .comment__user-name {
+                        display: inline-block;
+                        vertical-align: middle;
                     }
                 }
-
-                .comment__user-name {
+                .comment__btn-edit {
                     display: inline-block;
+                    height: $comment-head-height;
+                    vertical-align: middle;
+                }
+
+                .comment__btn-delete {
+                    height: $comment-head-height;
+                    vertical-align: middle;
                 }
 
                 .comment__content{
