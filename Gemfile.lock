@@ -94,6 +94,8 @@ GEM
     faraday (0.16.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.1)
+    font-awesome-sass (5.11.2)
+      sassc (>= 1.11)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     google-api-client (0.31.0)
@@ -288,6 +290,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   dotenv-rails
+  font-awesome-sass (~> 5.11.2)
   google-api-client (> 0.7)
   jbuilder (~> 2.5)
   kaminari

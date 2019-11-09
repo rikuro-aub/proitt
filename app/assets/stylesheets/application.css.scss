@@ -13,6 +13,8 @@
  */
 
  @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
  @import "scopes/videos/*";
  @import "scopes/tags/*";
  @import "scopes/comments/*";
