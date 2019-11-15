@@ -15,5 +15,6 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
+    @favorite = @video.favorites.where(user_id: session[:user_id])
   end
 end

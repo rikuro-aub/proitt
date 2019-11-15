@@ -1,13 +1,25 @@
 <div data-scope-path="videos/show">
     <div class="container">
-        <p><%= @video.title %></p>
-        <%= content_tag(:iframe, '', :src => "https://www.youtube.com/embed/#{@video.video_id}?autoplay=0&controls=1") %>
-        <p><%= @video.description %></p>
-        <%= link_to 'コメントを投稿する' ,new_video_comment_path(@video.id), class: 'btn btn-primary' %>
-        <div class="comment">
-            <div class="comment__title">コメント</div>
-            <%= 'コメントはまだ投稿されていません' if @video.comments.blank? %>
-            <%= render @video.comments %>
+        <div class="row">
+            <div class="col-xs-1">
+                <div id="video__favorite-btn">
+                    <%= render 'favorites/favorite_form', {video: @video, favorite: @favorite} %>
+                </div>
+                <div id="video__favorites-count">
+                    <%= @video.favorites_count %>
+                </div>
+            </div>
+            <div class="col-xs-11">
+                <p><%= @video.title %></p>
+                <%= content_tag(:iframe, '', :src => "https://www.youtube.com/embed/#{@video.video_id}?autoplay=0&controls=1") %>
+                <p><%= @video.description %></p>
+                <%= link_to 'コメントを投稿する' ,new_video_comment_path(@video.id), class: 'btn btn-primary' %>
+                <div class="comment">
+                    <div class="comment__title">コメント</div>
+                    <%= 'コメントはまだ投稿されていません' if @video.comments.blank? %>
+                    <%= render @video.comments %>
+                </div>
+            </div>
         </div>
     </div>
 </div>

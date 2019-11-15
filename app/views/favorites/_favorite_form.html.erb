@@ -1,0 +1,5 @@
+<% if video.favorite?(session[:user_id]) %>
+    <%= link_to icon('fas', 'star', class: 'video__favorite-on'), video_favorite_path(video, favorite), method: :delete, remote: true %>
+<% else %>
+    <%= link_to icon('far', 'star', class: 'video__favorite-off'), video_favorites_path(video, favorite), method: :post, remote: true %>
+<% end %>

@@ -1,0 +1,2 @@
+document.getElementById('video__favorite-btn').innerHTML = '<%= escape_javascript(link_to icon('far', 'star', class: 'video__favorite-off'), video_favorites_path(video, favorite), method: :post, remote: true) %>'
+document.getElementById('video__favorites-count').innerHTML = '<%= video.favorites_count %>'

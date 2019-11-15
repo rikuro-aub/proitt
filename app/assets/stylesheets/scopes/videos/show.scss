@@ -1,10 +1,35 @@
 [data-scope-path="videos/show"] {
     $comment-head-height: 36px;
+    $border-color: #CCCCCC;
+    $icon-size: 2.5em;
+
+    @mixin favorite {
+        font-size: $icon-size;
+        border: solid 1px $border-color;
+        border-radius: 5px;
+        position: fixed;
+    }
 
     .container {
+        .video__favorite-on {
+            @include favorite();
+            color: #FADA4A;
+        }
+
+        .video__favorite-off {
+            @include favorite();
+            color: $border-color;
+        }
+
+        #video__favorites-count {
+            margin-top: $icon-size + 0.5em;
+            text-align: center;
+            position: fixed;
+        }
+
         .comment{
             .comment__title {
-                border-bottom: 2px dotted #ccc;
+                border-bottom: 2px dotted $border-color;
                 margin: 40px 0 20px 0;
             }
 
@@ -41,7 +66,7 @@
                 }
 
                 .comment__content{
-                    border: solid 1px #ccc;
+                    border: solid 1px $border-color;
                 }
             }
         }

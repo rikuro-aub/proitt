@@ -23,4 +23,12 @@ class Video < ApplicationRecord
     has_many :favorites
     has_many :users, through: :comments
     has_many :users, through: :favorites
+
+    def favorite?(user_id)
+        self.favorites.find_by(user_id: user_id)
+    end
+
+    def favorites_count
+        self.favorites.count
+    end
 end
