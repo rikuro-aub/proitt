@@ -2,12 +2,7 @@
     <div class="container">
         <span class="label label-primary"><%= @tag.tag %></span>
         <div class="row">
-            <% @videos.each do |video| %>
-                <div class="video">
-                    <%= link_to image_tag(video.thumbnail_url), video_path(video) %>
-                    <p><%= video.title %></p>
-                </div>
-            <% end %>
+            <%= render 'videos/videos_list', {videos: @videos} %>
         </div>
         <%= paginate @videos %>
     </div>

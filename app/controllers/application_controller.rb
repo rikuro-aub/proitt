@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     helper_method :current_user
     before_action :login_rquired
+    before_action :set_search
 
     private
         def current_user
@@ -12,5 +13,10 @@ class ApplicationController < ActionController::Base
                 flash[:error] = 'ログインしてください'
                 redirect_to root_path
             end
+        end
+
+        def set_search
+            @q = Video.ransack(params[:q])
+            @search_videos = @q.result
         end
 end

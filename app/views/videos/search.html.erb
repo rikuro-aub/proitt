@@ -1,0 +1,13 @@
+<div data-scope-path="videos/search">
+    <div class="container">
+        <div class="row">
+            <% if @search_videos.blank? %>
+                <p>動画は見つかりませんでした</p>
+                <%= link_to '> ホーム', root_path%>
+            <% else %>
+                <%= render 'videos_list', {videos: @search_videos} %>
+            <% end %>
+        </div>
+        <%= paginate @search_videos %>
+    </div>
+</div>

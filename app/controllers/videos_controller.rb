@@ -17,4 +17,14 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     @favorite = @video.favorites.where(user_id: session[:user_id])
   end
+
+  def search
+    @q = Video.search(search_params)
+    @search_videos = @q.result(distinct: true).page(params[:page])
+  end
+
+  private
+    def search_params
+      params.require(:q).permit(:title_or_description_cont)
+    end
 end

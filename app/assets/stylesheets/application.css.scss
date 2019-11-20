@@ -18,3 +18,17 @@
  @import "scopes/videos/*";
  @import "scopes/tags/*";
  @import "scopes/comments/*";
+
+ body {
+    .navbar {
+        .navbar__search-form{
+            float: left;
+            height: 50px;
+            padding: 10px 10px;
+        }
+    }
+
+    .flash {
+        padding-top: 60px;
+    }
+ }

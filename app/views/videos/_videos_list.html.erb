@@ -1,0 +1,6 @@
+    <% videos.each do |video| %>
+        <div class="video">
+            <%= link_to image_tag(video.thumbnail_url), video_path(video) %>
+            <p><%= video.title %></p>
+        </div>
+    <% end %>
