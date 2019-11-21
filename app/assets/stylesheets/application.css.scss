@@ -21,15 +21,25 @@
  @import "scopes/inquiries/*";
 
  body {
+     $navbar-height: 50px;
+
     .navbar {
+        .navbar-brand {
+            padding: 0 15px;
+
+            img {
+                height: $navbar-height;
+            }
+        }
+
         .navbar__search-form{
             float: left;
-            height: 50px;
+            height: $navbar-height;
             padding: 10px 10px;
         }
     }
 
     .flash {
-        padding-top: 60px;
+        padding-top: $navbar-height+10px;
     }
  }
