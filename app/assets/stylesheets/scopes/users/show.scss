@@ -1,0 +1,16 @@
+[data-scope-path="users/show"] {
+    .container {
+        .profile__user-image {
+            display: inline-block;
+
+            img {
+                height: 100px;
+                width: 100px;
+            }
+        }
+
+        .profile__user-name {
+            display: inline-block;
+        }
+    }
+}

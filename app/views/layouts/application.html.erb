@@ -27,11 +27,9 @@
         <div class="collapse navbar-collapse" id="bs-navi">
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <% if current_user then %>
-                <%= link_to 'ログアウト', logout_path %>
-              <% else %>
-                <%= link_to 'ログイン', '/auth/github' %>
-              <% end %>
+              <div class="navbar__user-icon">
+                <%= render 'user_icon' %>
+              </div>
             </li>
             <li><%= link_to 'お問い合わせ', inquiry_path %></li>
             <li><a href="#">nav2</a></li>

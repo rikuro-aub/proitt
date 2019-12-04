@@ -1,0 +1,13 @@
+<div data-scope-path="users/show">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4">
+                <%= render 'menu', {user: @user} %>
+            </div>
+            <div class="col-xs-8">
+                <div class="profile__user-image"><%= content_tag(:img, '', src: @user.image_url, alt: 'プロフィール画像') %></div>
+                <div class="profile__user-name"><%= @user.name %></div>
+            </div>
+        </div>
+    </div>
+</div>

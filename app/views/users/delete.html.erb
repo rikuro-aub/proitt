@@ -1,0 +1,25 @@
+<div data-scope-path="users/delete">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3">
+                <%= render 'users/menu', {user: @user} %>
+            </div>
+            <div class="col-xs-9 user-delete">
+                <%= form_with(model: @user, method: :delete) do |f| %>
+                    <div class="form-group">
+                        <label>ユーザー名</label>
+                        <%= f.text_field :user_name, class: "form-control" %>
+                    </div>
+                    <div class="user-delete__notes">
+                        <p>*自身のユーザー名を入力してください</p>
+                        <p>*連携元のGitHubのユーザーは削除されません</p>
+                    </div>
+                    <div class="text-left">
+                        <%= f.submit "削除", class: "btn btn-primary", data: {confirm: "ユーザーに紐づくコメント等も削除されます。\n本当に削除してもよろしいですか?"} %>
+                    </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

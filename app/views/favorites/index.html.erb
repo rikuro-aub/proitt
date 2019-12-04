@@ -1,0 +1,14 @@
+<div data-scope-path="favorites/index">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3">
+                <%= render 'users/menu', {user: @user} %>
+            </div>
+            <div class="col-xs-9">
+                <%= 'お気に入り動画はまだありません' if @paginatable_favorite_videos.blank? %>
+                <%= render 'videos/videos_list', {videos: @paginatable_favorite_videos} %>
+                <%= paginate @paginatable_favorite_videos %>
+            </div>
+        </div>
+    </div>
+</div>

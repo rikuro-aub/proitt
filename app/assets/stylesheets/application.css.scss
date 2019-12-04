@@ -19,6 +19,8 @@
  @import "scopes/tags/*";
  @import "scopes/comments/*";
  @import "scopes/inquiries/*";
+ @import "scopes/users/*";
+ @import "scopes/favorites/*";
 
  body {
      $navbar-height: 50px;
@@ -36,6 +38,30 @@
             float: left;
             height: $navbar-height;
             padding: 10px 10px;
+        }
+
+        .navbar__user-icon {
+
+            .navbar__user-logout-status {
+                $a-tag-height: 20px;
+
+                a {
+                    text-decoration-line: none;
+                    color: #858585;
+                    display: block;
+                    margin-top: $navbar-height/2-$a-tag-height/2;
+                }
+            }
+
+            button {
+                padding: 0px 1px;
+                height: 100%;
+            }
+
+            img {
+                height: 100%;
+                width: $navbar-height;
+            }
         }
     }
 

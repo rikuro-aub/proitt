@@ -72,6 +72,32 @@ class CommentsController < ApplicationController
         redirect_to video_path(@video), notice: 'コメントが削除されました'
     end
 
+    def index
+        @user = User.find(params[:user_id])
+
+        # 正当なユーザーであることを確認
+        unless @user.equal_token?(session[:token])
+          flash[:error] = 'マイページへのアクセスに失敗しました / 再ログイン後にやり直してください'
+          redirect_to root_path and return
+        end
+
+        @comments = Comment.where(user_id: @user.id).includes([:user, :video]).page(params[:page])
+    end
+
+    def from_my_page_destroy
+        @user = User.find(params[:user_id])
+
+        # 正当なユーザーであることを確認
+        unless User.find(session[:user_id]).equal_token?(session[:token])
+            flash[:error] = 'コメントの削除に失敗しました / 再ログイン後に再実行してください'
+            redirect_to user_comments_path(@user) and return
+        end
+
+        comment = Comment.find(params[:id])
+        comment.destroy
+        redirect_to user_comments_path(@user), notice: 'コメントが削除されました'
+    end
+
     private
         def comment_params
             params.require(:comment).permit(:comment, :user_id, :video_id)

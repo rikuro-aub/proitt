@@ -14,6 +14,7 @@ class FavoritesController < ApplicationController
         render partial: 'destroy.js.erb', locals: {video: video, favorite: favorite}
     end
 
+
     def destroy
         video = Video.find(params[:video_id])
 
@@ -27,5 +28,18 @@ class FavoritesController < ApplicationController
         favorite = video.favorites.where(user_id: session[:user_id])
 
         render partial: 'create.js.erb', locals: {video: video, favorite: favorite}
+    end
+
+    def index
+        @user = User.find(params[:user_id])
+
+        # 正当なユーザーであることを確認
+        unless @user.equal_token?(session[:token])
+          flash[:error] = 'マイページへのアクセスに失敗しました / 再ログイン後にやり直してください'
+          redirect_to root_path and return
+        end
+
+        favorite_videos = Favorite.where(user_id: @user.id).includes(:video).map(&:video)
+        @paginatable_favorite_videos = Kaminari.paginate_array(favorite_videos, total_count: favorite_videos.size).page(params[:page]).per(Kaminari.config.default_per_page)
     end
 end

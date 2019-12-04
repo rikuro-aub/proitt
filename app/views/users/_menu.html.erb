@@ -1,0 +1,8 @@
+<nav class>
+<ul class="nav flex-column affix">
+    <li><%= link_to 'プロフィール', user_path(user) %></li>
+    <li><%= link_to 'お気に入り動画', user_favorites_path(user) %></li>
+    <li><%= link_to 'コメント一覧', user_comments_path(user) %></li>
+    <li><%= link_to 'アカウント削除', user_delete_path(user) %></li>
+</ul>
+</nav>

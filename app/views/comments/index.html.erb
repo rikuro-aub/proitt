@@ -1,0 +1,40 @@
+<div data-scope-path="comments/index">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3">
+                <%= render 'users/menu', {user: @user} %>
+            </div>
+            <div class="col-xs-9">
+                <%= 'コメントはまだありません' if @comments.blank? %>
+                <% @comments.each do |comment| %>
+                    <div class="row comment">
+                        <div class="col-xs-3">
+                            <div class="comment__video-thumbnail">
+                                <%= link_to image_tag(comment.video.thumbnail_url), video_path(comment.video.id) %>
+                            </div>
+                            <div class="comment__video-title">
+                                <%= comment.video.title %>
+                            </div>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="row">
+                                <% if @user&.equal_token?(session[:token]) %>
+                                    <div class="comment__btn col-xs-offset-8 col-xs-4">
+                                        <div class="comment__btn-edit">
+                                            <%= link_to '編集', edit_video_comment_path(comment.video_id, comment.id) %>
+                                        </div>
+                                        <div class="comment__btn-delete">
+                                            <%= link_to '削除', from_my_page_destroy_user_comment_path(comment.user_id, comment.id), method: :delete, data: {confirm: '本当に削除してもよろしいですか?'} %>
+                                        </div>
+                                    </div>
+                                <% end %>
+                                <div class="col-xs-12 well well-sm comment__content"><%= simple_format(h comment.comment) %></div>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+                <%= paginate @comments %>
+            </div>
+        </div>
+    </div>
+</div>

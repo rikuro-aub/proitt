@@ -1,0 +1,29 @@
+[data-scope-path="favorites/index"] {
+    $thumbnail-width: 250px;
+    $thumbnail-height: 140px;
+
+    .container {
+        padding-left: 0;
+
+        .row {
+            padding-left: 15px;
+
+            .video {
+                display: block;
+
+                img {
+                    width: $thumbnail-width;
+                    height: $thumbnail-height;
+                }
+
+                p {
+                    display: inline-block;
+                    vertical-align: top;
+                    width: 33.333%;
+                    height: $thumbnail-height;
+                    word-wrap: break-word;
+                }
+            }
+        }
+    }
+}
