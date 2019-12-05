@@ -36,6 +36,8 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem "nokogiri", ">= 1.8"
+
 gem 'dotenv-rails'
 gem 'google-api-client', '>0.7'
 gem 'bootstrap-sass'
