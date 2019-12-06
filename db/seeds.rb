@@ -15,8 +15,8 @@ PER_PAGE_TAGS = 100 # max 100
 GET_TAGS_URI = 'https://qiita.com/api/v2/tags'
 MINIMUM_TAGS_USED_COUNT = 300
 GET_VIDEOS_SEARCH_URI = 'https://www.googleapis.com/youtube/v3/search'
-PER_PAGE_VIDEOS_SEARCH = 50 # max 50
-MAX_SEARCH_VIDEOS_COUNT = 50
+PER_PAGE_VIDEOS_SEARCH = 10 # max 50
+MAX_RESISTER_VIDEOS_COUNT = 70
 GET_VIDEOS_DETAIL_URI = 'https://www.googleapis.com/youtube/v3/videos'
 
 # ///// yotubeのカテゴリID /////
@@ -109,6 +109,17 @@ def GetVideosDetail(id)
     return res.code.to_i, JSON.parse(res.body)
 end
 
+# ///// 特殊言語動画除外メソッド /////
+def ExcludeSpecificLanguageVideo(reg, check_str, video)
+    if reg.match(check_str)
+        Video.find(video.id).destroy
+        puts "delete id:#{video.id} video_id:#{video.video_id}"
+        return true
+    end
+    return false
+end
+
+
 # ///// タグデータの登録 /////
 sort = 'count'
 next_page = 1
@@ -137,10 +148,15 @@ page = 1
 # タグの一覧を取得して、タグをキーワードに動画検索
 # ToDo: レコード数の制限から取得レコード数をidで制限している
 # ToDo: youtuvbe api の使用制限から取得範囲をどうするか考慮する必要あり
-Tag.where("id between 22 AND 22 AND active_flag=true").find_each do |tag|
+Tag.where("id between 4 AND 4 AND active_flag=true").find_each do |tag|
     # ToDo: 日本語動画を優先して取得するために、queryの後ろに日本語を結合しているが取得方法は検討する必要あり
     query = tag.tag
-    # query = tag.tag + ' プログラ'
+    # query = tag.tag + ' プログラミング'
+    # query = tag.tag + ' program'
+
+    # Tagごとの登録可能残件数
+    resister_remaining_count = MAX_RESISTER_VIDEOS_COUNT - Video.where(tag_id: tag.id).count
+
     next_page_token, total_page, result_search = SearchVideosList(query, PER_PAGE_VIDEOS_SEARCH, order, type, Category::EDUCATION, next_page_token)
     puts "検索ワード:'#{query}' 検索結果:#{result_search.page_info.total_results}"
     puts result_search.items
@@ -157,14 +173,14 @@ Tag.where("id between 22 AND 22 AND active_flag=true").find_each do |tag|
         end
 
         page += 1
-        break if PER_PAGE_VIDEOS_SEARCH * page > MAX_SEARCH_VIDEOS_COUNT
+        break if PER_PAGE_VIDEOS_SEARCH * page > resister_remaining_count
         next_page_token, total_page, result_search = SearchVideosList(query, PER_PAGE_VIDEOS_SEARCH, order, type, Category::EDUCATION, next_page_token)
     end
 end
 
 # video_idから動画の詳細を取得して登録する
 # ToDo: youtuvbe api の使用制限から取得範囲をどうするか考慮する必要あり
-Video.where('tag_id<=22 AND title is null').find_each do |video|
+Video.where('tag_id<=80 AND title is null').find_each do |video|
     status, result_search = GetVideosDetail(video.video_id)
     unless status == 200 then
         puts "status:#{status} id:#{video.id}\n#{result_search}"
@@ -174,10 +190,22 @@ Video.where('tag_id<=22 AND title is null').find_each do |video|
     snippet = result_search['items'][0]['snippet']
     statistics = result_search['items'][0]['statistics']
 
+    #スペイン語(?)を除外
+    next if ExcludeSpecificLanguageVideo(/[\u00BF-\u00FF]/, snippet['title'].to_s, video)
+    next if ExcludeSpecificLanguageVideo(/[\u00BF-\u00FF]/, snippet['description'].to_s, video)
+
+    #ロシア語を除外
+    next if ExcludeSpecificLanguageVideo(/[\u0400-\u04FF]/, snippet['title'].to_s, video)
+    next if ExcludeSpecificLanguageVideo(/[\u0400-\u04FF]/, snippet['description'].to_s, video)
+
+    #アラビア語を除外
+    next if ExcludeSpecificLanguageVideo(/[\u0600-\u06FF]/, snippet['title'].to_s, video)
+    next if ExcludeSpecificLanguageVideo(/[\u0600-\u06FF]/, snippet['description'].to_s, video)
+
     # 動画詳細を登録する
     video.title = snippet['title']
     video.description = snippet['description']
-    video.thumbnail_url = snippet['thumbnails']['default']['url']
+    video.thumbnail_url = snippet['thumbnails']['high']['url']
     video.view_count = statistics['viewCount'].to_i
     video.like_count = statistics['likeCount'].to_i
     video.dislike_count = statistics['dislikeCount'].to_i
