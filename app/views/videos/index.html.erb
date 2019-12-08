@@ -1,16 +1,42 @@
 <div data-scope-path="videos/index">
     <div class="container">
-        <% @tags.each do |tag| %>
-            <div class="row">
-                <p><%= link_to tag.tag, tags_path(tag) %></p>
-                <% @videos[tag.tag.to_sym].each do |video| %>
-                    <div class="video">
-                        <%= link_to image_tag(video.thumbnail_url), video_path(video) %>
-                        <p><%= video.title %></p>
+        <div class="row">
+            <div class="col-xs-9">
+                <% @tags_paginate.each do |tag| %>
+                    <div class="row">
+                        <p><%= link_to tag.tag, tags_path(tag) %></p>
+                        <% @videos[tag.tag.to_sym].each do |video| %>
+                            <div class="video">
+                                <%= link_to image_tag(video.thumbnail_url), video_path(video) %>
+                                <p><%= video.title %></p>
+                            </div>
+                        <% end %>
                     </div>
                 <% end %>
+                <%= paginate @tags_paginate %>
             </div>
-        <% end %>
-        <%= paginate @tags %>
+            <div class="col-xs-3">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <a data-toggle="collapse" href="#tags-collapse">タグ一覧</a>
+                            </div>
+                        </div>
+                        <div id="tags-collapse" class="panel-collapse collapse">
+                            <ul class="list-group">
+                                <% @tags.each do |tag| %>
+                                    <% if tag.active_flag == true %>
+                                        <li class="list-group-item"><%= link_to tag.tag, tags_path(tag) %></li>
+                                    <% else %>
+                                        <li class="list-group-item"><%= tag.tag %></li>
+                                    <% end %>
+                                <% end %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
