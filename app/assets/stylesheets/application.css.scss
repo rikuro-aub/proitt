@@ -25,6 +25,10 @@
  body {
      $navbar-height: 50px;
 
+     display: flex;
+     flex-direction: column;
+     min-height: 100vh;
+
     .navbar {
         .navbar-brand {
             padding: 0 15px;
@@ -67,5 +71,23 @@
 
     .flash {
         padding-top: $navbar-height+10px;
+    }
+
+    .footer {
+        margin-top: auto;
+
+        .footer__menue {
+            color: #ffffff;
+            background-color: #5c5c5c;
+
+            a {
+            color: #ffffff;
+            }
+        }
+
+        .footer__copyright {
+            color: #ffffff;
+            background-color: #222222;
+        }
     }
  }
