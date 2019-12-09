@@ -4,20 +4,48 @@
 
 [data-scope-path="videos/index"] {
     $thumbnail-width: 120px;
+    $count-videos-by-tag: 4;
 
     .container {
         .row {
-            .video {
-                display: inline-block;
-                vertical-align: top;
+            .row {
+                margin-bottom: 3rem;
 
-                img {
-                    width: $thumbnail-width;
+                .tag {
+                    text-align: center;
+                    margin-bottom: 1rem;
+
+                    a {
+                        display: block;
+                        border-radius: 10px;
+                        color: white;
+                        background: #639D97;
+                    }
                 }
+                .videos {
+                    text-align: center;
 
-                p {
-                    width: $thumbnail-width;
-                    word-wrap: break-word;
+                    .videos__video {
+                        display: inline-block;
+                        vertical-align: top;
+                        margin: 0 1rem;
+
+                        img {
+                            width: $thumbnail-width;
+                        }
+
+                        p {
+                            text-align: left;
+                            width: $thumbnail-width;
+                            word-wrap: break-word;
+                        }
+
+                        // 最初からX番目まで
+                        a::nth-child(-n+3) {
+                            margin-right: 10px;
+                        }
+                    }
+
                 }
             }
         }
