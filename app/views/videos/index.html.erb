@@ -1,21 +1,25 @@
 <div data-scope-path="videos/index">
     <div class="container">
         <div class="row">
-            <div class="col-xs-9">
+            <div class="col-xs-10">
                 <% @tags_paginate.each do |tag| %>
                     <div class="row">
-                        <p><%= link_to tag.tag, tags_path(tag) %></p>
-                        <% @videos[tag.tag.to_sym].each do |video| %>
-                            <div class="video">
-                                <%= link_to image_tag(video.thumbnail_url), video_path(video) %>
-                                <p><%= video.title %></p>
-                            </div>
-                        <% end %>
+                        <div class="col-xs-12 tag">
+                            <%= link_to tag.tag, tags_path(tag) %>
+                        </div>
+                        <div class="col-xs-12 videos">
+                            <% @videos[tag.tag.to_sym].each do |video| %>
+                                <div class="videos__video">
+                                    <%= link_to image_tag(video.thumbnail_url), video_path(video) %>
+                                    <p><%= video.title %></p>
+                                </div>
+                            <% end %>
+                        </div>
                     </div>
                 <% end %>
                 <%= paginate @tags_paginate %>
             </div>
-            <div class="col-xs-3">
+            <div class="col-xs-2">
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
