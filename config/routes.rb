@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'terms/show'
   get 'privacy_policies/show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'videos#index'
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   get 'search', to: 'videos#search'
   get 'inquiry', to: 'inquiries#show'
   get 'privacy_policy', to: 'privacy_policies#show'
+  get 'term', to: 'terms#show'
 
   resources :videos, only: [:index, :show] do
     resources :comments
