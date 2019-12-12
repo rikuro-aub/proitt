@@ -1,5 +1,5 @@
 <div class="navbar__user-logout-status">
-    <%= link_to 'ログイン', '/auth/github' unless current_user %>
+    <%= link_to 'ログイン', '/auth/github', data: {confirm: "利用規約とプライバシーポリシーに同意してログイン処理に進みますか?"} unless current_user %>
 </div>
 <% if current_user %>
     <div class="dropdown navbar__user-login-status">
