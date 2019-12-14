@@ -1,0 +1,127 @@
+[data-scope-path="introductions/show"] {
+    $icon-size: 3rem;
+    $topic-font-size: 2rem;
+    $base-green: #639D97;
+    $base-yellow: #EEE888;
+
+    .container {
+        .introduction__what-is {
+            margin-bottom: 3rem;
+
+            .introduction__what-is__box-1:after,
+            .introduction__what-is__box-2:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+
+            .introduction__what-is__box-1 {
+                .laptop {
+                    float: left;
+                    width: 10%;
+                    font-size: $icon-size;
+                    color: $base-green;
+                }
+
+                p {
+                    float: left;
+                    width: 90%;
+                    font-weight: bold;
+                    font-size: $topic-font-size;
+                }
+            }
+
+            .introduction__what-is__box-2 {
+
+                img {
+                    float: left;
+                    width: 10%;
+                    max-width: 50px;
+                    max-height: 50px;
+                    border: 1px #000000 solid;
+                    margin-left: 5%;
+                }
+
+                p {
+                    float: left;
+                    width: 85%;
+                    padding-left: 1rem;
+                }
+            }
+
+        }
+
+        .introduction__mission {
+            margin-bottom: 3rem;
+
+            .introduction__mission__box-1:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+
+            .introduction__mission__box-1 {
+                .flag {
+                    float: left;
+                    width: 10%;
+                    font-size: $icon-size;
+                    color: $base-green;
+                }
+
+                p {
+                    float: left;
+                    width: 90%;
+                    font-weight: bold;
+                    font-size: $topic-font-size;
+                }
+            }
+
+            .introduction__mission__box-2 {
+                margin-left: 5%;
+                width: 95%;
+            }
+
+        }
+
+        .introduction__features {
+            .introduction__features__box-1:after,
+            .introduction__features__box-2:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+
+            .introduction__features__box-1 {
+                .sticky-note {
+                    float: left;
+                    width: 10%;
+                    font-size: $icon-size;
+                    color: $base-green;
+                }
+
+                p {
+                    float: left;
+                    font-weight: bold;
+                    width: 90%;
+                    font-size: $topic-font-size;
+                }
+            }
+
+            .introduction__features__box-2 {
+                .check {
+                    float: left;
+                    width: 10%;
+                    font-size: $icon-size;
+                    margin-left: 5%;
+                    color: $base-yellow;
+                }
+
+                p {
+                    float: left;
+                    width: 85%;
+                }
+            }
+
+        }
+    }
+}
