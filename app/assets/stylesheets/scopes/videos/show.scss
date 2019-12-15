@@ -11,6 +11,8 @@
     }
 
     .container {
+        margin-bottom: 3rem;
+
         .video__favorite-on {
             @include favorite();
             color: #FADA4A;
@@ -27,7 +29,23 @@
             position: fixed;
         }
 
+        .video__collapse-btn {
+            display: block;
+        }
+
+        .video__collapse-btn:after {
+            content: '動画説明';
+        }
+
+        .video__caret-square-down {
+            font-size: 2.5rem;
+        }
+
         .comment{
+            .comment__btn {
+                margin-top: 3rem;
+            }
+
             .comment__title {
                 border-bottom: 2px dotted $border-color;
                 margin: 40px 0 20px 0;

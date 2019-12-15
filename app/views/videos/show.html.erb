@@ -12,9 +12,14 @@
             <div class="col-xs-11">
                 <p><%= @video.title %></p>
                 <%= content_tag(:iframe, '', :src => "https://www.youtube.com/embed/#{@video.video_id}?autoplay=0&controls=1") %>
-                <p><%= @video.description %></p>
-                <%= link_to 'コメントを投稿する' ,new_video_comment_path(@video.id), class: 'btn btn-primary' %>
+                <button type="button" class="btn video__collapse-btn" data-toggle="collapse" data-target="#video__collapse-description" aria-expanded="false">
+                    <%= icon('fas', 'caret-square-down', class: 'video__caret-square-down') %>
+                </button>
+                <div class="collapse" id="video__collapse-description">
+                    <%= simple_format(h @video.description) %>
+                </div>
                 <div class="comment">
+                    <%= link_to 'コメントを投稿する' ,new_video_comment_path(@video.id), class: 'btn btn-primary comment__btn' %>
                     <div class="comment__title">コメント</div>
                     <%= 'コメントはまだ投稿されていません' if @video.comments.blank? %>
                     <%= render @video.comments %>
