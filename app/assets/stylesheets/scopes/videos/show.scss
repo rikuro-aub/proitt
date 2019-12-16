@@ -29,6 +29,15 @@
             position: fixed;
         }
 
+        .video__window {
+            iframe{
+                width: 60vw;
+                height: 35vw;
+                max-width: 700px;
+                max-height: 450px
+            }
+        }
+
         .video__collapse-btn {
             display: block;
         }

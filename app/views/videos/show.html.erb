@@ -11,7 +11,9 @@
             </div>
             <div class="col-xs-11">
                 <p><%= @video.title %></p>
-                <%= content_tag(:iframe, '', :src => "https://www.youtube.com/embed/#{@video.video_id}?autoplay=0&controls=1") %>
+                <div class="video__window">
+                    <%= content_tag(:iframe, '', :src => "https://www.youtube.com/embed/#{@video.video_id}?autoplay=0&controls=1") %>
+                </div>
                 <button type="button" class="btn video__collapse-btn" data-toggle="collapse" data-target="#video__collapse-description" aria-expanded="false">
                     <%= icon('fas', 'caret-square-down', class: 'video__caret-square-down') %>
                 </button>
