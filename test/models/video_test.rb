@@ -15,6 +15,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  title          :text
+#  japanese_flag  :boolean
 #
 
 require 'test_helper'

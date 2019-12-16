@@ -210,6 +210,12 @@ Video.where('tag_id<=80 AND title is null').find_each do |video|
     video.like_count = statistics['likeCount'].to_i
     video.dislike_count = statistics['dislikeCount'].to_i
     video.favorite_count = statistics['favoriteCount'].to_i
+    # 日本語動画かどうかを判定
+    if /[\u3040-\u30FF]/.match(snippet['title']) || /[\u3040-\u30FF]/.match(snippet['description'])
+        video.japanese_flag = true
+    else
+        video.japanese_flag = false
+    end
     video.save
 
     puts "status:#{status} id:#{video.id} tag:#{video.tag.tag}"
