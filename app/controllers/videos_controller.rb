@@ -7,10 +7,11 @@ class VideosController < ApplicationController
 
     # トップページ表示用の動画を取得する
     @tags = Tag.all.order(:id)
-    @tags_paginate = Tag.all.order(:id).page(params[:page])
+    @tags_paginate = Tag.where(active_flag: true).order(:id).page(params[:page])
     @tags_paginate.each do |tag|
-      # いいね数/視聴回数 が上位の動画をトップページに表示する
-      @videos.merge!(tag.tag.to_sym => Video.where(tag_id: tag).order('like_count/view_count DESC').limit(display_items_by_tag))
+      # 日本語動画を優先してトップページに表示する
+      # いいね数/視聴回数 が上位の動画を優先してトップページに表示する
+      @videos.merge!(tag.tag.to_sym => Video.where(tag_id: tag).order('japanese_flag DESC, like_count/view_count DESC').limit(display_items_by_tag))
     end
   end
 
