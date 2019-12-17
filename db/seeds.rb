@@ -202,6 +202,14 @@ Video.where('tag_id<=80 AND title is null').find_each do |video|
     next if ExcludeSpecificLanguageVideo(/[\u0600-\u06FF]/, snippet['title'].to_s, video)
     next if ExcludeSpecificLanguageVideo(/[\u0600-\u06FF]/, snippet['description'].to_s, video)
 
+    #韓国語を除外
+    next if ExcludeSpecificLanguageVideo(/[\u1100-\u11FF]/, snippet['title'].to_s, video)
+    next if ExcludeSpecificLanguageVideo(/[\u1100-\u11FF]/, snippet['description'].to_s, video)
+
+    #インド系言語を除外
+    next if ExcludeSpecificLanguageVideo(/[\u0900-\u0DFF]/, snippet['title'].to_s, video)
+    next if ExcludeSpecificLanguageVideo(/[\u0900-\u0DFF]/, snippet['description'].to_s, video)
+
     # 動画詳細を登録する
     video.title = snippet['title']
     video.description = snippet['description']
