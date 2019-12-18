@@ -45,6 +45,14 @@
             float: left;
             height: $navbar-height;
             padding: 10px 10px;
+
+            .navbar__search-input-field {
+                display: inline;
+            }
+
+            .navbar__search-button {
+                display: inline;
+            }
         }
 
         .navbar__user-icon {
