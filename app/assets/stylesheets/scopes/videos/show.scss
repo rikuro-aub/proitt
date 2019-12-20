@@ -41,6 +41,7 @@
 
         .video__collapse-btn {
             display: block;
+            background-color: #FFFFFF;
         }
 
         .video__collapse-btn:after {
@@ -96,6 +97,17 @@
                         display: inline-block;
                     }
                 }
+            }
+        }
+    }
+
+    /* スマートフォン縦
+    ------------------------------ */
+    @media screen and (max-width:479px) {
+        .video__window {
+            iframe{
+                min-width: 75vw;
+                min-height: 45vw;
             }
         }
     }
