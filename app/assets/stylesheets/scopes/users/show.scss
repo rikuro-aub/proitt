@@ -13,4 +13,28 @@
             display: inline-block;
         }
     }
+
+    /* スマートフォン縦
+    ------------------------------ */
+    @media screen and (max-width:479px) {
+        .row {
+            .nav {
+                font-size: 1px;
+
+                li {
+                    a {
+                        padding-left: 0;
+                        padding-right: 0;
+                    }
+                }
+            }
+
+            .profile__user-image {
+                img {
+                    height: 50px;
+                    width: 50px;
+                }
+            }
+        }
+    }
 }
