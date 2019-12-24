@@ -1,29 +1,49 @@
 [data-scope-path="videos/search"] {
-    $thumbnail-width: 250px;
-    $thumbnail-height: 140px;
+    $margin-space: 15px;
+
+    margin-bottom: 10px;
 
     .container {
-        padding-left: 0;
 
         .row {
-            padding-left: 15px;
-            padding-top: 2rem;
+            padding: 0 $margin-space 0 $margin-space;
 
             .video {
-                display: block;
+                margin-top: 20px;
 
                 img {
-                    width: $thumbnail-width;
-                    height: $thumbnail-height;
+                    float: left;
+                    width: 30%;
                 }
 
                 p {
-                    display: inline-block;
+                    float: left;
                     vertical-align: top;
-                    width: 33.333%;
-                    height: $thumbnail-height;
+                    width: 70%;
                     word-wrap: break-word;
+                    padding-left: 10px;
                 }
+            }
+
+            .video:after {
+                content: '';
+                display: block;
+                clear: both;
+            }
+        }
+    }
+
+        /* スマートフォン縦
+    ------------------------------ */
+    @media screen and (max-width:479px) {
+        .video {
+
+            img {
+                min-width: 40%;
+            }
+
+            p {
+                max-width: 60%;
             }
         }
     }
