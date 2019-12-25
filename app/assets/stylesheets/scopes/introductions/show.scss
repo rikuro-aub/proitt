@@ -18,14 +18,14 @@
             .introduction__what-is__box-1 {
                 .laptop {
                     float: left;
-                    width: 10%;
+                    width: 5%;
                     font-size: $icon-size;
                     color: $base-green;
                 }
 
                 p {
                     float: left;
-                    width: 90%;
+                    width: 95%;
                     font-weight: bold;
                     font-size: $topic-font-size;
                 }
@@ -63,14 +63,14 @@
             .introduction__mission__box-1 {
                 .flag {
                     float: left;
-                    width: 10%;
+                    width: 5%;
                     font-size: $icon-size;
                     color: $base-green;
                 }
 
                 p {
                     float: left;
-                    width: 90%;
+                    width: 95%;
                     font-weight: bold;
                     font-size: $topic-font-size;
                 }
@@ -94,7 +94,7 @@
             .introduction__features__box-1 {
                 .sticky-note {
                     float: left;
-                    width: 10%;
+                    width: 5%;
                     font-size: $icon-size;
                     color: $base-green;
                 }
@@ -102,7 +102,7 @@
                 p {
                     float: left;
                     font-weight: bold;
-                    width: 90%;
+                    width: 95%;
                     font-size: $topic-font-size;
                 }
             }
@@ -110,7 +110,7 @@
             .introduction__features__box-2 {
                 .check {
                     float: left;
-                    width: 10%;
+                    width: 5%;
                     font-size: $icon-size;
                     margin-left: 5%;
                     color: $base-yellow;
@@ -118,10 +118,53 @@
 
                 p {
                     float: left;
-                    width: 85%;
+                    width: 90%;
                 }
             }
+        }
+    }
 
+    /* スマートフォン縦
+    ------------------------------ */
+    @media screen and (max-width:479px) {
+        .introduction__what-is__box-1 {
+            .laptop {
+                min-width: 15%;
+            }
+
+            p {
+                max-width: 85%;
+            }
+        }
+
+        .introduction__mission__box-1 {
+            .flag {
+                min-width: 15%;
+            }
+
+            p {
+                max-width: 85%;
+            }
+        }
+
+        .introduction__features__box-1 {
+            .sticky-note {
+                min-width: 15%;
+            }
+
+            p {
+                max-width: 85%;
+            }
+        }
+
+        .introduction__features__box-2 {
+            .check {
+                min-width: 10%;
+            }
+
+            p {
+                max-width: 85%;
+            }
         }
     }
 }
