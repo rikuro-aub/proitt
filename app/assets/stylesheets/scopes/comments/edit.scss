@@ -1,0 +1,16 @@
+[data-scope-path="comments/edit"] {
+    .container {
+        .comment__video-thumbnail {
+            img {
+                width: 60vw;
+                height: 35vw;
+                max-width: 700px;
+                max-height: 450px;
+            }
+        }
+
+        .form-group {
+            margin-top: 40px;
+        }
+    }
+}
