@@ -33,4 +33,59 @@
             }
         }
     }
+
+    /* スマートフォン縦
+    ------------------------------ */
+    @media screen and (max-width:479px) {
+        .row {
+            .nav {
+                font-size: 1px;
+
+                li {
+                    a {
+                        padding-left: 0;
+                        padding-right: 0;
+                    }
+                }
+            }
+
+            .comment {
+                margin-bottom: 20px;
+
+                .comment__video {
+                    margin-bottom: 2px;
+
+                    .comment__video-thumbnail {
+                        img {
+                            float: left;
+                            height: auto;
+                            width: 50%;
+                        }
+                    }
+
+                    .comment__video-title {
+                        float: left;
+                        width: 50%;
+                        padding-left: 5px;
+                        font-size: 1px;
+                    }
+                }
+                .comment__video:after {
+                    conrent: '';
+                    display: block;
+                    clear: both;
+                }
+
+                .row {
+                    margin: 0 0;
+
+                    .comment__btn {
+                        .comment__btn-edit {
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -51,7 +51,14 @@
             }
 
             .navbar__search-button {
-                display: inline;
+                display: inline-block;
+
+                input {
+                    display: inline-block;
+                    background-color: #F5F5F5;
+                    height: 26px;
+                    border-radius: 3px;
+                }
             }
         }
 
@@ -102,3 +109,25 @@
         }
     }
  }
+
+ /* スマートフォン縦
+------------------------------ */
+@media screen and (max-width:479px) {
+    body {
+        .navbar {
+            .navbar__search-form{
+                .navbar__search-input-field {
+                    input{
+                        width: 30vw;
+                    }
+                }
+            }
+        }
+
+        .footer {
+            .footer__menue{
+                height: 40px;
+            }
+        }
+    }
+}

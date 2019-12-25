@@ -49,5 +49,36 @@
                 }
             }
         }
+
+    }
+
+    /* タブレット
+    ------------------------------ */
+    @media screen and (min-width:480px) and (max-width:959px) {
+        .panel-title {
+            font-size: 2vw;
+        }
+
+        .panel-collapse {
+            font-size: 2vw;
+        }
+    }
+
+    /* スマートフォン縦
+    ------------------------------ */
+    @media screen and (max-width:479px) {
+        .videos__video {
+            p {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        .panel-title {
+            font-size: 1vw;
+        }
+
+        .panel-collapse {
+            font-size: 1vw;
+        }
     }
 }

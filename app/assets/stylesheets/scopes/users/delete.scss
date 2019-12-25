@@ -8,4 +8,29 @@
             }
         }
     }
+
+        /* スマートフォン縦
+    ------------------------------ */
+    @media screen and (max-width:479px) {
+        .row {
+            .nav {
+                font-size: 1px;
+
+                li {
+                    a {
+                        padding-left: 0;
+                        padding-right: 0;
+                    }
+                }
+            }
+
+            .user-delete {
+                .user-delete__notes {
+                    p {
+                        font-size: 3vw;
+                    }
+                }
+            }
+        }
+    }
 }

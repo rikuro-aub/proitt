@@ -1,7 +1,7 @@
 <div data-scope-path="videos/show">
     <div class="container">
         <div class="row">
-            <div class="col-xs-1">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
                 <div id="video__favorite-btn">
                     <%= render 'favorites/favorite_form', {video: @video, favorite: @favorite} %>
                 </div>
@@ -9,7 +9,7 @@
                     <%= @video.favorites_count %>
                 </div>
             </div>
-            <div class="col-xs-11">
+            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
                 <p><%= @video.title %></p>
                 <div class="video__window">
                     <%= content_tag(:iframe, '', :src => "https://www.youtube.com/embed/#{@video.video_id}?autoplay=0&controls=1") %>

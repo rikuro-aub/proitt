@@ -1,9 +1,9 @@
 <div class="row comment__body">
-    <div class="col-xs-8 comment__user">
+    <div class="col-xs-7 comment__user">
         <div class="comment__user-image"><%= content_tag(:img, '', src: comment.user.image_url, alt: 'プロフィール画像') %></div>
         <div class="comment__user-name"><%= comment.user.name %></div>
     </div>
-    <div class="col-xs-4 comment__btn">
+    <div class="col-xs-5 comment__btn">
         <% if comment.user&.equal_token?(session[:token]) %>
             <div class="comment__btn-edit"><%= link_to '編集', edit_video_comment_path(@video, comment) %></div>
             <div class="comment__btn-delete"><%= link_to '削除', video_comment_path(@video, comment), method: :delete, data: {confirm: '本当に削除してもよろしいですか?'} %></div>

@@ -1,27 +1,55 @@
 [data-scope-path="favorites/index"] {
-    $thumbnail-width: 250px;
-    $thumbnail-height: 140px;
-
     .container {
-        padding-left: 0;
-
         .row {
-            padding-left: 15px;
-
             .video {
-                display: block;
+                padding-bottom: 20px;
 
                 img {
-                    width: $thumbnail-width;
-                    height: $thumbnail-height;
+                    float: left;
+                    width: 30%;
                 }
 
                 p {
-                    display: inline-block;
+                    float: left;
                     vertical-align: top;
-                    width: 33.333%;
-                    height: $thumbnail-height;
+                    width: 70%;
                     word-wrap: break-word;
+                    padding-left: 10px;
+                }
+            }
+
+            .video:after {
+                content: '';
+                display: block;
+                clear: both;
+            }
+        }
+    }
+
+    /* スマートフォン縦
+    ------------------------------ */
+    @media screen and (max-width:479px) {
+        .row {
+            .nav {
+                font-size: 1px;
+
+                li {
+                    a {
+                        padding-left: 0;
+                        padding-right: 0;
+                    }
+                }
+            }
+
+            .video {
+                margin-left: 10px;
+
+                img {
+                    min-width: 50%;
+                }
+
+                p {
+                    max-width: 50%;
                 }
             }
         }

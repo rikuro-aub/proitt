@@ -8,7 +8,7 @@
                 <%= 'コメントはまだありません' if @comments.blank? %>
                 <% @comments.each do |comment| %>
                     <div class="row comment">
-                        <div class="col-xs-3">
+                        <div class="col-sm-3 col-xs-12 comment__video">
                             <div class="comment__video-thumbnail">
                                 <%= link_to image_tag(comment.video.thumbnail_url), video_path(comment.video.id) %>
                             </div>
@@ -16,10 +16,10 @@
                                 <%= comment.video.title %>
                             </div>
                         </div>
-                        <div class="col-xs-9">
+                        <div class="col-sm-9 col-xs-12">
                             <div class="row">
                                 <% if @user&.equal_token?(session[:token]) %>
-                                    <div class="comment__btn col-xs-offset-8 col-xs-4">
+                                    <div class="comment__btn col-xs-offset-6 col-xs-6">
                                         <div class="comment__btn-edit">
                                             <%= link_to '編集', edit_video_comment_path(comment.video_id, comment.id) %>
                                         </div>
